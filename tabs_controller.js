@@ -1,15 +1,22 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "tab", "tabContent" ]
+  static targets = ["tab", "tabContent"]
 
   connect() {
+    this.setActiveClass()
     this.displayContent()
   }
 
   switch() {
     this.toggleActiveClass()
     this.displayContent()
+  }
+
+  setActiveClass() {
+    if (!this.element.getElementsByClassName('active').length) {
+      this.tabTargets[0].classList.add('active')
+    }
   }
 
   toggleActiveClass() {
